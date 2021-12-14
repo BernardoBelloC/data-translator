@@ -1,7 +1,6 @@
 import dash
 from dash import dcc
 from dash import html
-from dash.dependencies import Output
 import plotly.express as px
 import requests
 import io
@@ -11,8 +10,6 @@ url = "https://raw.githubusercontent.com/chyld/datasets/main/auto-mpg.csv" # Mak
 download = requests.get(url).content
 df = pd.read_csv(io.StringIO(download.decode('utf-8')),error_bad_lines=False,engine='python')
 
-##df.to_csv('cars.info.csv')
-##df = pd.read_csv('cars.info.csv')
 fig = px.scatter(df, x="displacement", y="weight", trendline='ols')
 
 app = dash.Dash(__name__)
